@@ -3,21 +3,8 @@ public class User {
     private String name;
     private String city;
     private int age;
+    private Country country;
     private ShoppingCart shoppingCart;
     private MonetaryAmount balance;
-
-    public class Adrress {
-        public enum Country {
-            HUNGARY, UK, GERMANY
-        }
-
-        private Country country;
-        private String city;
-    }
-
-    public class ShoppingCart {
-    }
-
-    public class MonetaryAmount {
-    }
 }
+
