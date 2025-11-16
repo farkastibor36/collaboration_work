@@ -1,4 +1,6 @@
-package com.webshop.model;
+import com.webshop.model.Product;
+import com.webshop.model.ShoppingCart;
+import com.webshop.model.User;
 
 public class Main {
     public static void main(String[] args) {
