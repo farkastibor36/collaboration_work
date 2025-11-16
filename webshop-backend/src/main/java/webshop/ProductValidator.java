@@ -1,3 +1,5 @@
+package webshop;
+
 public class ProductValidator {
 
     public static boolean isValidName(String name) {
@@ -14,4 +16,5 @@ public class ProductValidator {
     public static boolean isValidProduct(Product product) {
         return isValidName(product.getName()) && isValidPrice(product.getPrice()) && isValidStock(product.getStock());
     }
+
 }
