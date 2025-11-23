@@ -9,9 +9,9 @@ public class Main {
         User user = new User(
                 1,
                 "Oscar",
-                "BudaPest",
                 30,
-                Country.HUNGARY, null, balance);
+                null,
+                balance);
 
         ShoppingCart cart = new ShoppingCart(user);
 
