@@ -49,6 +49,11 @@ public class ShoppingCart {
         return owner;
     }
 
+    public void clear() {
+        products.clear();
+        totalPrice = 0;
+    }
+
     @Override
     public String toString() {
         return "ShoppingCart{" +

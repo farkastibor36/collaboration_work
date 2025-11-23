@@ -1,8 +1,21 @@
 public class Main {
     public static void main(String[] args) {
-        Product product = new Product(2L, "bread", new MonetaryAmount(850.5, "HUF"), 10);
-        System.out.println("Valid product: " + ProductValidator.isValidProduct(product));
-        Product product2 = new Product(2L, "bread123", new MonetaryAmount(850.5, "HUF"), 10);
-        System.out.println("Invalid product: " + ProductValidator.isValidProduct(product2));
+
+
+        //I need it for PayService class, don't delete please or write to me a text before :)
+        //Thank you!
+
+        MonetaryAmount balance = new MonetaryAmount(10000, "HUF");
+        User user = new User(
+                1,
+                "Oscar",
+                "BudaPest",
+                30,
+                Country.HUNGARY, null, balance);
+
+        ShoppingCart cart = new ShoppingCart(user);
+
+        PayService payService = new PayService();
+        payService.pay(cart);
     }
 }
