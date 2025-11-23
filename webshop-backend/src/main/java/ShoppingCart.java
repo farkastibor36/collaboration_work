@@ -1,3 +1,5 @@
+import webshop.Product;
+
 import java.util.ArrayList;
 import java.util.List;
 
