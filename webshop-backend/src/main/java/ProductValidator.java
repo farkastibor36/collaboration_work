@@ -5,7 +5,11 @@ public class ProductValidator implements Validator<Product> {
     // product-price: must be positive
     // product-stock: must be a positive number
 
-    //FIXME: null values must also be excluded
+    public static boolean isValidCountry(Country country) { return country != null; }
+    
+    public static boolean isValidStock(int stock) {
+        return stock > 0;
+    }
 
     @Override
     public boolean isValid(Product product) {
