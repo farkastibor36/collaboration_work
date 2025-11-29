@@ -1,11 +1,9 @@
-public class ProductValidator {
+public class ProductValidator implements Validator<Product> {
 
-    public static boolean isValidName(String name) {
-        return name.matches("[a-z ]+");
-    }
-
-    public static boolean isValidPrice(MonetaryAmount price) { return price.getAmount() > 0;
-    }
+    //TODO
+    // product-name: only lowercase letters and spaces are allowed
+    // product-price: must be positive
+    // product-stock: must be a positive number
 
     public static boolean isValidCountry(Country country) { return country != null; }
     
@@ -13,7 +11,17 @@ public class ProductValidator {
         return stock > 0;
     }
 
-    public static boolean isValidProduct(Product product) {
-        return isValidName(product.getName()) && isValidPrice(product.getPrice()) && isValidStock(product.getStock());
+    @Override
+    public boolean isValid(Product product) {
+        if (!product.getName().matches("[a-z ]+")) {
+            return false;
+        }
+        if (product.getPrice().getAmount() < 0) {
+            return false;
+        }
+        if (product.getStock() < 0) {
+            return false;
+        }
+        return true;
     }
 }
