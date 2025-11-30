@@ -9,8 +9,11 @@ public class TestPayService {
     //  totalPrice is reset to zero
     @Test
     public void shouldSuccessfulPayment() {
-        User user = new User(1, "Sanyi",
-                new MonetaryAmount(1520, "EUR"));
+        User user = User.builder()
+                .id(1)
+                .name("Sanyi")
+                .balance(new MonetaryAmount(1520, "EUR") )
+                .build();
         ShoppingCart cart = new ShoppingCart(user);
         Product milk = new Product(20L, "milk",
                 new MonetaryAmount(2, "EUR"), 10);
@@ -23,5 +26,4 @@ public class TestPayService {
         assertTrue(cart.getProducts().isEmpty());
         assertEquals(0, cart.getTotalPrice());
     }
-
 }

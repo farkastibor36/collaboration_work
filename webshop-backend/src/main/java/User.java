@@ -1,10 +1,13 @@
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
+
 public class User {
     private int id;
     private String name;
@@ -13,10 +16,4 @@ public class User {
     private ShoppingCart shoppingCart;
     private MonetaryAmount balance;
 
-    // FIXME: needed for the TestPayService test
-    public User(int id, String name, MonetaryAmount balance) {
-        this.id = id;
-        this.name = name;
-        this.balance = balance;
-    }
 }
