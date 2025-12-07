@@ -1,6 +1,7 @@
 package model;
 
 import jakarta.persistence.*;
+
 @Entity
 @Table(name="product")
 public class Product {
@@ -19,6 +20,10 @@ public class Product {
         this.name = name;
         this.price = price;
         this.stock = stock;
+    }
+
+    public Product() {
+
     }
 
     public long getId() {
