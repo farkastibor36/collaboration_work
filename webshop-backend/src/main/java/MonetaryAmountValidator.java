@@ -1,5 +1,3 @@
-import model.MonetaryAmount;
-
 public class MonetaryAmountValidator implements Validator<MonetaryAmount> {
 
     @Override
