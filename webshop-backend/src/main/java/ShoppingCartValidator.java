@@ -1,43 +1,43 @@
-import model.Product;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ShoppingCartValidator implements Validator<ShoppingCart> {
 
-    //TODO
-    // owner: nem lehet null és UserValidator szabályaival egyező
-    // products list: nem lehet null, lehet üres, tényleges model.Product termék legyen
-    // products list: nem tartalmazhat null vagy duplikált elemeket
-    // totalPrice: nem lehet negatív, egyeznie kell a termékek árainak összegével
+    // TODO
+    //  owner: cannot be null, must be valid by UserValidator
+    //  products list: cannot be null, can be empty, must be real Product
+    //  products list: cannot have null or duplicate items
+    //  totalPrice: cannot be negative, must equal sum of product prices
 
     private final UserValidator userValidator = new UserValidator();
-
+    private final ProductValidator productValidator = new ProductValidator();
 
     @Override
     public boolean isValid(ShoppingCart shoppingCart) {
-        if (shoppingCart == null) {
+        if (shoppingCart == null) return false;
+
+        if (shoppingCart.getOwner() == null || !userValidator.isValid(shoppingCart.getOwner())) {
             return false;
         }
-        if (!userValidator.isValid(shoppingCart.getOwner())) {
-            return false;
-        }
+
         List<Product> products = shoppingCart.getProducts();
-        if (products == null) {
-            return false;
-        }
+        if (products == null) return false;
+
+
+        Set<Product> uniqueProducts = new HashSet<>();
         for (Product product : products) {
-            if (product == null) return false;
-            ProductValidator productValidator = new ProductValidator();
-            if (!productValidator.isValid(product)) {
-                return false;
-            }
+            if (product == null || !productValidator.isValid(product)) return false;
+            if (!uniqueProducts.add(product)) return false;
         }
-        int sum = 0;
-        for (Product p : products) {
-            sum += (int) p.getPrice().getAmount();
-        }
+
         if (shoppingCart.getTotalPrice() < 0) return false;
-        if (shoppingCart.getTotalPrice() != sum) return false;
+
+
+        double sum = products.stream()
+                .mapToDouble(p -> p.getPrice().getAmount())
+                .sum();
+        if (Double.compare(shoppingCart.getTotalPrice(), sum) != 0) return false;
 
         return true;
     }
