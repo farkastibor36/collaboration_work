@@ -1,4 +1,5 @@
 import model.MonetaryAmount;
+import model.MoneyCurrency;
 import model.Product;
 import org.junit.Test;
 
