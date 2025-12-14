@@ -1,4 +1,4 @@
-import model.MonetaryAmount;
+import utils.PrintUtils;
 
 public class PayService {
 
@@ -33,11 +33,17 @@ public class PayService {
 
             owner.setBalance(newBalance);
 
-            System.out.println(owner.getName() + " bought: " + cart.getProducts());
+            PrintUtils.success("Payment accepted!");
+            PrintUtils.success(owner.getName() + " bought: " + cart.getProducts());
+            PrintUtils.success("You are a Rich Kid" +
+                    "(for now)");
             cart.clear();
         } else {
-            System.out.println("Error: user " + owner.getName() + "has insufficient balance. Needed: " + totalPrice + ", available "
-            + balanceAmount);
+            double missing = totalPrice - balanceAmount;
+            PrintUtils.error("Error: user " + owner.getName() + " has insufficient balance. Needed: " + totalPrice +
+                    ", available: " + balanceAmount);
+            PrintUtils.info("You are Poor Bro :D (missing: " + (int) missing + "HUF)");
+            PrintUtils.info("Tip: use option 7 (Add balance) to become a RichKid");
         }
     }
 }
