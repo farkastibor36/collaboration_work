@@ -19,7 +19,7 @@ public class ProductSearchService {
     }
 
 
-    public List<Product> searchByPriceRange(List<Product> products, double maxPrice, double minPrice) {
+    public List<Product> searchByPriceRange(List<Product> products, double minPrice, double maxPrice) {
         List<Product> result = new ArrayList<>();
         for (Product p : products) {
             double price = p.getPrice().getAmount(); //MonetaryAmount - double!!
