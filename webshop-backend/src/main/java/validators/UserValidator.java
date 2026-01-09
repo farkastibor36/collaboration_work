@@ -1,5 +1,8 @@
-public class UserValidator implements Validator<User>{
+package validators;
 
+import model.User;
+
+public class UserValidator implements Validator<User> {
     //TODO
     // user-id: ellenőrzés: pl, pozitív szám legyen
     // user-name: ellenőrzés pl., nem legyen null

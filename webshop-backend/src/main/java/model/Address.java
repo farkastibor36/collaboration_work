@@ -4,14 +4,12 @@ import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
-@ToString
 @Embeddable
-public class MonetaryAmount {
-    private double amount;
-    private MoneyCurrency currency;
+public class Address {
+    private Country country;
+    private String city;
 }

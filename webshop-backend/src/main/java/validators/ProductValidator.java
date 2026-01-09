@@ -1,3 +1,6 @@
+package validators;
+
+import model.Country;
 import model.Product;
 
 public class ProductValidator implements Validator<Product> {
@@ -7,8 +10,10 @@ public class ProductValidator implements Validator<Product> {
     // product-price: must be positive
     // product-stock: must be a positive number
 
-    public static boolean isValidCountry(Country country) { return country != null; }
-    
+    public static boolean isValidCountry(Country country) {
+        return country != null;
+    }
+
     public static boolean isValidStock(int stock) {
         return stock > 0;
     }

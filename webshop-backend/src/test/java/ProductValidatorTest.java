@@ -1,12 +1,12 @@
 import model.MonetaryAmount;
 import model.MoneyCurrency;
 import model.Product;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import validators.ProductValidator;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class TestProductValidator {
+public class ProductValidatorTest {
 
     @Test
     public void shouldNameWithUppercaseReturnFalse() {

@@ -1,11 +1,14 @@
+package validators;
+
 import model.Product;
+import service.ShoppingCart;
 
 import java.util.List;
 
 public class ShoppingCartValidator implements Validator<ShoppingCart> {
 
     //TODO
-    // owner: nem lehet null és UserValidator szabályaival egyező
+    // owner: nem lehet null és validators.UserValidator szabályaival egyező
     // products list: nem lehet null, lehet üres, tényleges model.Product termék legyen
     // products list: nem tartalmazhat null vagy duplikált elemeket
     // totalPrice: nem lehet negatív, egyeznie kell a termékek árainak összegével
@@ -16,9 +19,6 @@ public class ShoppingCartValidator implements Validator<ShoppingCart> {
     @Override
     public boolean isValid(ShoppingCart shoppingCart) {
         if (shoppingCart == null) {
-            return false;
-        }
-        if (!userValidator.isValid(shoppingCart.getOwner())) {
             return false;
         }
         List<Product> products = shoppingCart.getProducts();

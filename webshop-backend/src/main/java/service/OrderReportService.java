@@ -1,4 +1,8 @@
+package service;
+
+import dao.Dao;
 import model.Product;
+import model.User;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -6,7 +10,13 @@ import java.util.List;
 import java.util.Map;
 
 public class OrderReportService {
-    public Map<Product, Integer> getTotalSalesProduct(List<User> users) {
+    List<User> users;
+
+    public OrderReportService(List<User> users) {
+        this.users = users;
+    }
+
+    public Map<Product, Integer> getTotalSalesProduct() {
         Map<Product, Integer> sales = new HashMap<>();
         for (User user : users) {
             ShoppingCart shoppingCart = user.getShoppingCart();
@@ -19,7 +29,7 @@ public class OrderReportService {
         return sales;
     }
 
-    public BigDecimal getTotalRevenue(List<User> users) {
+    public BigDecimal getTotalRevenue() {
         BigDecimal revenue = BigDecimal.ZERO;
         for (User user : users) {
             ShoppingCart shoppingCart = user.getShoppingCart();
@@ -32,7 +42,7 @@ public class OrderReportService {
         return revenue;
     }
 
-    public Map<User, Integer> getOrderCountPerUser(List<User> users) {
+    public Map<User, Integer> getOrderCountPerUser() {
         Map<User, Integer> orders = new HashMap<>();
         for (User user : users) {
             ShoppingCart shoppingCart = user.getShoppingCart();

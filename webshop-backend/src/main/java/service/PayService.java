@@ -1,3 +1,7 @@
+package service;
+
+import model.MonetaryAmount;
+import model.User;
 import utils.PrintUtils;
 
 public class PayService {

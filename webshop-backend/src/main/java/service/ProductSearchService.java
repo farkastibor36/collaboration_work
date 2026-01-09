@@ -1,3 +1,5 @@
+package service;
+
 import model.Product;
 
 import java.util.ArrayList;
@@ -20,7 +22,6 @@ public class ProductSearchService {
         return result;
     }
 
-
     public List<Product> searchByPriceRange(List<Product> products, double minPrice, double maxPrice) {
         List<Product> result = new ArrayList<>();
         for (Product p : products) {
@@ -34,8 +35,8 @@ public class ProductSearchService {
 
     public List<Product> searchByAvailability(List<Product> products) {
         List<Product> result = new ArrayList<>();
-        for(Product p : products) {
-            if(p.getStock() > 0) {
+        for (Product p : products) {
+            if (p.getStock() > 0) {
                 result.add(p);
             }
         }

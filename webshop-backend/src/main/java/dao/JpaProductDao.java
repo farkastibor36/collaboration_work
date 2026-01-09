@@ -1,6 +1,8 @@
 package dao;
 
+import exceptions.FailedToDeleteException;
 import jakarta.persistence.EntityTransaction;
+import lombok.AllArgsConstructor;
 import model.Product;
 
 import jakarta.persistence.EntityManager;
@@ -8,18 +10,19 @@ import jakarta.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-public class JpaProductDao implements ProductDao {
+@AllArgsConstructor
+public class JpaProductDao implements Dao<Product, Long> {
     private EntityManager entityManager;
 
     @Override
-    public Optional<Product> findById(long id) {
-        Product product = entityManager.find(Product.class, id);
-        return Optional.ofNullable(product);
+    public Optional<Product> findById(Long id) {
+        return Optional.ofNullable(entityManager.find(Product.class, id));
     }
 
     @Override
     public List<Product> findAll() {
-        return entityManager.createQuery("SELECT product_name, product_price, product_stock FROM product", Product.class).getResultList();
+        String query = "SELECT p FROM Product p";
+        return (entityManager.createQuery(query, Product.class).getResultList());
     }
 
     @Override
@@ -30,10 +33,16 @@ public class JpaProductDao implements ProductDao {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         executeOrder(() -> {
             Product product = entityManager.find(Product.class, id);
-            entityManager.remove(product);
+            if (product.getStock() > 1) {
+                product.setStock(product.getStock() - 1);
+            } else if (product == null) {
+                throw new RuntimeException("Product with id " + id + " not found");
+            } else {
+                entityManager.remove(product);
+            }
         });
     }
 
