@@ -22,9 +22,11 @@ public class PayServiceTest {
         User user = User.builder()
                 .id(1)
                 .name("Sanyi")
+                .shoppingCart(new ShoppingCart())
                 .balance(new MonetaryAmount(new BigDecimal(1520), MoneyCurrency.EUR))
                 .build();
-        ShoppingCart cart = new ShoppingCart();
+        ShoppingCart cart = user.getShoppingCart();
+        cart.setOwner(user);
         Product milk = new Product(20L, "milk",
                 2, new MonetaryAmount(new BigDecimal(10), MoneyCurrency.EUR));
         cart.addProduct(milk);
@@ -32,8 +34,8 @@ public class PayServiceTest {
         PayService payService = new PayService();
         payService.pay(cart);
 
-        assertEquals(new BigDecimal(1518), user.getBalance().getAmount(), String.valueOf(0.001));
+        assertEquals(new BigDecimal(1510), user.getBalance().getAmount(), String.valueOf(0.001));
         assertTrue(cart.getProducts().isEmpty());
-        assertEquals(0, cart.getTotalPrice());
+        assertEquals(BigDecimal.ZERO, cart.getTotalPrice());
     }
 }
